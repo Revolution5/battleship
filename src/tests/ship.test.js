@@ -11,26 +11,20 @@ test("set ship length", () => {
     expect(testShip.length).toBe(5);
 })
 
-test("positions array is filled correctly", () => {
-    let testShip = new Ship(4);
-    expect(testShip.positions[0]).toBe(false);
-    expect(testShip.positions[1]).toBe(false);
-    expect(testShip.positions[2]).toBe(false);
-    expect(testShip.positions[3]).toBe(false);
-})
+
 
 test("hitting a ship", () => {
     let testShip = new Ship(4);
-    testShip.hit(3);
-    expect(testShip.positions[3]).toBe(true);
+    testShip.hit();
+    expect(testShip.hits).toBe(1);
 })
 
 test("sinking a ship", () => {
     let testShip = new Ship(4);
-    testShip.hit(0);
-    testShip.hit(1);
-    testShip.hit(2);
-    testShip.hit(3);
+    testShip.hit();
+    testShip.hit();
+    testShip.hit();
+    testShip.hit();
     testShip.isSunk();
     expect(testShip.sunk).toBe(true);
 })

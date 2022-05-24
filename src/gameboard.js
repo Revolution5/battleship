@@ -20,7 +20,12 @@ export class Gameboard {
 
     placeShip(xPos, yPos, length) {
         if(this.board[xPos][yPos] == null) {
-           this.board[xPos][yPos] = new Ship(length); 
+            let ship = new Ship(length);
+            //horizontal ship
+            for(let i = yPos; i < yPos + length; i++) {
+                this.board[xPos][i] = ship;   
+            }
+            
         }
         
     }

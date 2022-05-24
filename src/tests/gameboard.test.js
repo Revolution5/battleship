@@ -5,4 +5,9 @@ test("place a ship at specific coordinates", () => {
     let testGameboard = new Gameboard;
     testGameboard.placeShip(0,1,4);
     expect(testGameboard.board[0][1]).not.toBe(null);
+    expect(testGameboard.board[0][2]).not.toBe(null);
+    expect(testGameboard.board[0][3]).not.toBe(null);
+    expect(testGameboard.board[0][4]).not.toBe(null);
+    expect(testGameboard.board[0][5]).toBe(null);
+    expect(testGameboard.board[0][1]).toEqual(testGameboard.board[0][2])
 })
