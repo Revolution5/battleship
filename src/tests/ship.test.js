@@ -12,7 +12,6 @@ test("set ship length", () => {
 })
 
 
-
 test("hitting a ship", () => {
     let testShip = new Ship(4);
     testShip.hit();
@@ -25,6 +24,6 @@ test("sinking a ship", () => {
     testShip.hit();
     testShip.hit();
     testShip.hit();
-    testShip.isSunk();
+    
     expect(testShip.sunk).toBe(true);
 })

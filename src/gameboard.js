@@ -3,17 +3,19 @@ import { Ship } from "./ship";
 export class Gameboard {
     constructor() {
         this.board = [
-            new Array(10).fill(null).map(() => ({ship: null, hit: false})),
-            new Array(10).fill(null).map(() => ({ship: null, hit: false})),
-            new Array(10).fill(null).map(() => ({ship: null, hit: false})),
-            new Array(10).fill(null).map(() => ({ship: null, hit: false})),
-            new Array(10).fill(null).map(() => ({ship: null, hit: false})),
-            new Array(10).fill(null).map(() => ({ship: null, hit: false})),
-            new Array(10).fill(null).map(() => ({ship: null, hit: false})),
-            new Array(10).fill(null).map(() => ({ship: null, hit: false})),
-            new Array(10).fill(null).map(() => ({ship: null, hit: false})),
-            new Array(10).fill(null).map(() => ({ship: null, hit: false}))
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false}))
         ]
+
+        this.ships = []
     }
 
     // fillBoard() {
@@ -21,7 +23,7 @@ export class Gameboard {
     //         let arr = new Array(10);
     //         this.board[i] = arr;
     //         for(let j = 0; j < 10; j++) {
-    //             arr[j] = {ship: null, hit: false};
+    //             arr[j] = {ship: null, isHit: false};
     //         }
     //     }
     // }
@@ -29,6 +31,7 @@ export class Gameboard {
     placeShip(xPos, yPos, length) {
         if(this.board[xPos][yPos].ship == null) {
             let newShip = new Ship(length);
+            this.ships.push(newShip);
             //horizontal ship
             for(let i = yPos; i < yPos + length; i++) {
                 this.board[xPos][i].ship = newShip;   
@@ -38,13 +41,19 @@ export class Gameboard {
 
     receiveAttack(xPos, yPos) {
         //if the square has a ship on it
-        if(this.board[xPos][yPos].ship != null && this.board[xPos][yPos].hit == false) {
+        if(this.board[xPos][yPos].ship != null && this.board[xPos][yPos].isHit == false) {
             this.board[xPos][yPos].ship.hit();
-            this.board[xPos][yPos].hit = true;
+            this.board[xPos][yPos].isHit = true;
         }
         //if there square does not have a ship on it
-        else if(this.board[xPos][yPos].ship == null && this.board[xPos][yPos].hit == false) {
-            this.board[xPos][yPos].hit = true;
+        else if(this.board[xPos][yPos].ship == null && this.board[xPos][yPos].isHit == false) {
+            this.board[xPos][yPos].isHit = true;
+        }
+    }
+
+    allShipsSunk() {
+        if(this.ships.every(ship => ship.sunk == true)) {
+            return true;
         }
     }
 }
