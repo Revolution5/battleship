@@ -14,3 +14,11 @@ test("Player attacks AI gameboard and hits a ship", () => {
     expect(testAI.gameboard.board[0][1].ship).toEqual({"_length": 4, "hits": 1, "sunk": false});
 })
 
+test("AI attacks player gameboard", () => {
+    let testPlayer = new Player(false);
+    let testAI = new Player(true);
+    testAI.takeTurnAI(testPlayer.gameboard);
+    let flatArr = testPlayer.gameboard.board.flat();
+
+    expect(flatArr).toContainEqual({"isHit": true, "ship": null});
+})
