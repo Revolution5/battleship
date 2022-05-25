@@ -41,13 +41,13 @@ export class Gameboard {
 
     receiveAttack(xPos, yPos) {
         //if the square has a ship on it
-        if(this.board[xPos][yPos].ship != null && this.board[xPos][yPos].isHit == false) {
+        if(this.board[xPos][yPos].ship != null) {
             this.board[xPos][yPos].ship.hit();
             this.board[xPos][yPos].isHit = true;
         }
         //if there square does not have a ship on it
-        else if(this.board[xPos][yPos].ship == null && this.board[xPos][yPos].isHit == false) {
-            this.board[xPos][yPos].isHit = true;
+        else if(this.board[xPos][yPos].ship == null) {
+            this.board[xPos][yPos].isHit = true;   
         }
     }
 
