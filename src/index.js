@@ -1,7 +1,3 @@
-import { player, computer, populateBoard} from "./gameController";
+import { startGame } from "./gameController";
 
-let playerGrid = document.querySelector(".player-grid");
-let enemyGrid = document.querySelector(".enemy-grid");
-
-populateBoard(playerGrid);
-populateBoard(enemyGrid);
+startGame();
