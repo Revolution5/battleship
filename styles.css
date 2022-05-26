@@ -18,17 +18,26 @@ body {
 
 .content {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     margin-top: 150px;
+    gap: 150px;
 }
-.player-grid, .enemy-grid {
+.human-grid, .computer-grid {
     display: grid;
-    grid-template-columns: repeat(10, 40px);
-    grid-template-rows: repeat(10, 40px);
+    grid-template-columns: repeat(10, 45px);
+    grid-template-rows: repeat(10, 45px);
     
 }
 
-.player-grid > div, .enemy-grid > div {
+.human-grid > div, .computer-grid > div {
     border: solid 1px black;
+}
+
+.computer-grid > div:hover {
+    background-color: #e4e4e7;
+}
+
+.square-ship {
+    background-color: #71717a;
 }
