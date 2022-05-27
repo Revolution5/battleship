@@ -41,3 +41,11 @@ body {
 .square-ship {
     background-color: #71717a;
 }
+
+.square-hit {
+    background-color: #60a5fa;
+}
+
+.square-ship-hit {
+    background-color: #f87171;
+}
