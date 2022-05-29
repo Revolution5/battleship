@@ -34,9 +34,9 @@ body {
     border: solid 1px black;
 }
 
-.computer-grid > div:hover {
+/* .computer-grid > div:hover {
     background-color: #e4e4e7;
-}
+} */
 
 .square-ship {
     background-color: #71717a;
