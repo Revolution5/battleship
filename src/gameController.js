@@ -79,6 +79,12 @@ function populateEnemyBoard() {
             }
         }
     }
+
+    let computerSquares = Array.from(document.querySelectorAll(".computer-grid > div"));
+
+    computerSquares.forEach(square => {
+        square.addEventListener("click", clickHandler);
+    })
 }
 
 function clearBoard(board) {
@@ -98,6 +104,44 @@ export function startGame() {
     
     populatePlayerBoard();
     populateEnemyBoard();
+
+    
 }
+
+function checkForWin() {
+    let computerSquares = Array.from(document.querySelectorAll(".computer-grid > div"));
+
+    if(computer.gameboard.allShipsSunk()) {
+        console.log("You Win!");
+
+        computerSquares.forEach(square => {
+            square.removeEventListener("click", clickHandler);
+        })
+    }
+    else if(human.gameboard.allShipsSunk()) {
+        console.log("You Lose!");
+        
+        computerSquares.forEach(square => {
+            square.removeEventListener("click", clickHandler);
+        })
+    }
+
+    
+}
+
+function clickHandler(e) {
+    let clicked = e.target.id;
+    let x = clicked[0];
+    let y = clicked[1];
+    if(computer.gameboard.board[x][y].isHit == false) {
+        human.takeTurn(computer.gameboard, x, y);
+        populateEnemyBoard();
+        checkForWin(); 
+        computer.takeTurnAI(human.gameboard);
+        populatePlayerBoard(); 
+    }
+}
+
+
 
 
