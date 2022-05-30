@@ -35,18 +35,24 @@ export class Gameboard {
         this.ships = []
     }
 
-    placeShip(xPos, yPos, length) {
-        if(this.board[xPos][yPos].ship == null) {
-            let newShip = new Ship(length);
-            //horizontal ship
-            for(let i = yPos; i < yPos + length; i++) {
-                if(this.board[xPos][i].ship == null) {
-                    //check if ALL the spots are good before putting down the ship
-                   this.board[xPos][i].ship = newShip;    
-                }
+    placeShip(xPos, yPos, length) {    
+        //horizontal ship
+        for(let i = yPos; i < yPos + length; i++) {
+            if(this.board[xPos][i] == undefined || this.board[xPos][i].ship != null) {
+                //check if ALL the spots are good before putting down the ship
+                //if any of the spots have been taken by another ship, we cannot put a new ship there
+                return false;
             }
-            this.ships.push(newShip);
         }
+        //make the ship 
+        let newShip = new Ship(length);
+        this.ships.push(newShip);
+        for(let i = yPos; i < yPos + length; i++) {
+            //we know the spots have been checked, so we can put the ship in those spots
+            this.board[xPos][i].ship = newShip;
+        }
+        return true;
+        
     }
 
     receiveAttack(xPos, yPos) {
