@@ -17,26 +17,48 @@ body {
 }
 
 .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 5fr 1fr;
+}
+
+.grids {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 150px;
     gap: 150px;
+    grid-row: 3/3;
+    grid-column: 1/3;
 }
+
+.winner-text {
+    grid-row: 1/1;
+    grid-column: 1/3;
+    justify-self: center;
+    align-self: center;
+}
+
+.player-label {
+    justify-self: end;
+    align-self: center;
+    padding-right: 272px;
+}
+
+.computer-label {
+    justify-self: start;
+    align-self: center;
+    padding-left: 220px;
+}
+
 .human-grid, .computer-grid {
     display: grid;
     grid-template-columns: repeat(10, 45px);
     grid-template-rows: repeat(10, 45px);
-    
 }
 
 .human-grid > div, .computer-grid > div {
     border: solid 1px black;
 }
-
-/* .computer-grid > div:hover {
-    background-color: #e4e4e7;
-} */
 
 .square-ship {
     background-color: #71717a;
