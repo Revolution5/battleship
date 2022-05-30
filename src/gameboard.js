@@ -57,7 +57,7 @@ export class Gameboard {
         else if(isVertical == true) {
             //vertical ship
             for(let i = xPos; i < xPos + length; i++) {
-                if(this.board[i][yPos] == undefined || this.board[i][yPos].ship != null) {
+                if(this.board[i] == undefined || this.board[i][yPos].ship != null) {
                     //check if ALL the spots are good before putting down the ship
                     //if any of the spots have been taken by another ship, we cannot put a new ship there
                     return false;
