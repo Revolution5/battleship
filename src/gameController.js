@@ -5,6 +5,7 @@ import { populateEnemyBoard, populatePlayerBoard } from "./dom";
 export let human = new Player();
 export let computer = new AI();
 let newRound = document.querySelector(".new-round");
+let winnerText = document.querySelector(".winner-text > h1");
 
 export function clickHandler(e) {
     let clicked = e.target.id;
@@ -43,6 +44,7 @@ export function startGame() {
     human.gameboard.resetBoard();
     computer.gameboard.resetBoard();
 
+    winnerText.textContent = "";
     newRound.style.display = "none";
 
     human.gameboard.placeShip(2,3,5);
