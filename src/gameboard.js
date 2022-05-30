@@ -38,11 +38,14 @@ export class Gameboard {
     placeShip(xPos, yPos, length) {
         if(this.board[xPos][yPos].ship == null) {
             let newShip = new Ship(length);
-            this.ships.push(newShip);
             //horizontal ship
             for(let i = yPos; i < yPos + length; i++) {
-                this.board[xPos][i].ship = newShip;   
+                if(this.board[xPos][i].ship == null) {
+                    //check if ALL the spots are good before putting down the ship
+                   this.board[xPos][i].ship = newShip;    
+                }
             }
+            this.ships.push(newShip);
         }
     }
 

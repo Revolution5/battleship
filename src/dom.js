@@ -58,7 +58,7 @@ export function populateEnemyBoard() {
             //computer ship must be invisible to the human player before being hit
             else if(computer.gameboard.board[i][j].ship != null && computer.gameboard.board[i][j].isHit == false) {
                 let square = document.createElement("div");
-                square.classList.add("square");
+                square.classList.add("square-ship");
                 square.setAttribute("id", i.toString() + j.toString());
                 computerGrid.appendChild(square); 
             }

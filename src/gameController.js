@@ -42,14 +42,20 @@ function checkForWin() {
 export function startGame() {
     human.gameboard.resetBoard();
     computer.gameboard.resetBoard();
+
     newRound.style.display = "none";
+
     human.gameboard.placeShip(2,3,5);
     human.gameboard.placeShip(0,1,4);
     human.gameboard.placeShip(4,4,3);
     human.gameboard.placeShip(6,7,3);
     human.gameboard.placeShip(8,1,2);
 
-    computer.gameboard.placeShip(0,1,2);
+    computer.placeRandomShip(5);
+    computer.placeRandomShip(4);
+    computer.placeRandomShip(3);
+    computer.placeRandomShip(3);
+    computer.placeRandomShip(2);
     
     populatePlayerBoard();
     populateEnemyBoard();
