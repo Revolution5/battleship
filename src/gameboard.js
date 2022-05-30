@@ -18,16 +18,6 @@ export class Gameboard {
         this.ships = []
     }
 
-    // fillBoard() {
-    //     for(let i = 0; i < 10; i++) {
-    //         let arr = new Array(10);
-    //         this.board[i] = arr;
-    //         for(let j = 0; j < 10; j++) {
-    //             arr[j] = {ship: null, isHit: false};
-    //         }
-    //     }
-    // }
-
     placeShip(xPos, yPos, length) {
         if(this.board[xPos][yPos].ship == null) {
             let newShip = new Ship(length);
