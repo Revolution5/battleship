@@ -25,12 +25,13 @@ export class AI extends Player {
     placeRandomShip(length) {
         let xPos = 0
         let yPos = 0
+        let isVertical = Math.random() > 0.5 ? true : false;
         let keepGoing = true;
 
         while(keepGoing) {
             xPos = this.generateCoord();
             yPos = this.generateCoord();
-            if(this.gameboard.placeShip(xPos, yPos, length)) {
+            if(this.gameboard.placeShip(xPos, yPos, length, isVertical)) {
                 keepGoing = false;
             }
         }
