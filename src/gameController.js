@@ -4,6 +4,7 @@ import { populateEnemyBoard, populatePlayerBoard } from "./dom";
 
 export let human = new Player();
 export let computer = new AI();
+let newRound = document.querySelector(".new-round");
 
 export function clickHandler(e) {
     let clicked = e.target.id;
@@ -27,20 +28,25 @@ function checkForWin() {
         computerSquares.forEach(square => {
             square.removeEventListener("click", clickHandler);
         })
+        newRound.style.display = "block";
     }
     else if(human.gameboard.allShipsSunk()) {
         winnerText.textContent = "You Lose!"
         computerSquares.forEach(square => {
             square.removeEventListener("click", clickHandler);
         })
+        newRound.style.display = "block";
     }
 }
 
 export function startGame() {
-    // human.gameboard.placeShip(2,3,5);
-    // human.gameboard.placeShip(0,1,4);
-    // human.gameboard.placeShip(4,4,3);
-    // human.gameboard.placeShip(6,7,3);
+    human.gameboard.resetBoard();
+    computer.gameboard.resetBoard();
+    newRound.style.display = "none";
+    human.gameboard.placeShip(2,3,5);
+    human.gameboard.placeShip(0,1,4);
+    human.gameboard.placeShip(4,4,3);
+    human.gameboard.placeShip(6,7,3);
     human.gameboard.placeShip(8,1,2);
 
     computer.gameboard.placeShip(0,1,2);

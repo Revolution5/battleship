@@ -18,6 +18,23 @@ export class Gameboard {
         this.ships = []
     }
 
+    resetBoard() {
+        this.board = [
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false})),
+            new Array(10).fill(null).map(() => ({ship: null, isHit: false}))
+        ]
+
+        this.ships = []
+    }
+
     placeShip(xPos, yPos, length) {
         if(this.board[xPos][yPos].ship == null) {
             let newShip = new Ship(length);

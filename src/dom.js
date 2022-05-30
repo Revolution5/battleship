@@ -1,7 +1,9 @@
-import { human, computer, clickHandler } from "./gameController";
+import { human, computer, clickHandler, startGame } from "./gameController";
 
 let humanGrid = document.querySelector(".human-grid");
 let computerGrid = document.querySelector(".computer-grid");
+let newRound = document.querySelector(".new-round");
+let winnerText = document.querySelector(".winner-text > h1");
 
 export function populatePlayerBoard() {
     clearBoard(humanGrid);
@@ -89,3 +91,8 @@ function clearBoard(board) {
         board.removeChild(board.firstChild);
     }
 }
+
+newRound.addEventListener("click", function(e) {
+    winnerText.textContent = "";
+    startGame();
+})
