@@ -1,97 +1,8 @@
 import { Player } from "./player";
+import { populateEnemyBoard, populatePlayerBoard } from "./dom";
 
 export let human = new Player(false);
 export let computer = new Player(true);
-
-let humanGrid = document.querySelector(".human-grid");
-let computerGrid = document.querySelector(".computer-grid");
-
-function populatePlayerBoard() {
-    clearBoard(humanGrid);
-
-    for(let i = 0; i < 10; i++) {
-        for(let j = 0; j < 10; j++) {
-            //no ship no hit
-            if(human.gameboard.board[i][j].ship == null && human.gameboard.board[i][j].isHit == false) {
-                let square = document.createElement("div");
-                square.classList.add("square");
-                square.setAttribute("id", i.toString() + j.toString());
-                humanGrid.appendChild(square);   
-            }
-            //yes ship no hit
-            else if(human.gameboard.board[i][j].ship != null && human.gameboard.board[i][j].isHit == false) {
-                let square = document.createElement("div");
-                square.classList.add("square-ship");
-                square.setAttribute("id", i.toString() + j.toString());
-                humanGrid.appendChild(square);
-            }
-            //no ship yes hit
-            else if(human.gameboard.board[i][j].ship == null && human.gameboard.board[i][j].isHit == true) {
-                let square = document.createElement("div");
-                square.classList.add("square-hit");
-                square.setAttribute("id", i.toString() + j.toString());
-                humanGrid.appendChild(square);
-            }
-            //yes ship yes hit
-            else if(human.gameboard.board[i][j].ship != null && human.gameboard.board[i][j].isHit == true) {
-                let square = document.createElement("div");
-                square.classList.add("square-ship-hit");
-                square.setAttribute("id", i.toString() + j.toString());
-                humanGrid.appendChild(square);
-            }
-        }
-    }
-}
-
-function populateEnemyBoard() {
-    clearBoard(computerGrid);
-
-    for(let i = 0; i < 10; i++) {
-        for(let j = 0; j < 10; j++) {
-            //no ship no hit
-            if(computer.gameboard.board[i][j].ship == null && computer.gameboard.board[i][j].isHit == false) {
-                let square = document.createElement("div");
-                square.classList.add("square");
-                square.setAttribute("id", i.toString() + j.toString());
-                computerGrid.appendChild(square);   
-            }
-            //yes ship no hit 
-            //computer ship must be invisible to the human player before being hit
-            else if(computer.gameboard.board[i][j].ship != null && computer.gameboard.board[i][j].isHit == false) {
-                let square = document.createElement("div");
-                square.classList.add("square");
-                square.setAttribute("id", i.toString() + j.toString());
-                computerGrid.appendChild(square); 
-            }
-            //no ship yes hit
-            else if(computer.gameboard.board[i][j].ship == null && computer.gameboard.board[i][j].isHit == true) {
-                let square = document.createElement("div");
-                square.classList.add("square-hit");
-                square.setAttribute("id", i.toString() + j.toString());
-                computerGrid.appendChild(square); 
-            }
-            //yes ship yes hit
-            else if(computer.gameboard.board[i][j].ship != null && computer.gameboard.board[i][j].isHit == true) {
-                let square = document.createElement("div");
-                square.classList.add("square-ship-hit");
-                square.setAttribute("id", i.toString() + j.toString());
-                computerGrid.appendChild(square); 
-            }
-        }
-    }
-
-    let computerSquares = Array.from(document.querySelectorAll(".computer-grid > div"));
-
-    computerSquares.forEach(square => {
-        square.addEventListener("click", clickHandler);
-    })
-}
-
-function clearBoard(board) {
-    while(board.firstChild) {
-        board.removeChild(board.firstChild);
-    }
-}
 
 export function startGame() {
     human.gameboard.placeShip(2,3,5);
@@ -104,8 +15,6 @@ export function startGame() {
     
     populatePlayerBoard();
     populateEnemyBoard();
-
-    
 }
 
 function checkForWin() {
@@ -113,14 +22,12 @@ function checkForWin() {
 
     if(computer.gameboard.allShipsSunk()) {
         console.log("You Win!");
-
         computerSquares.forEach(square => {
             square.removeEventListener("click", clickHandler);
         })
     }
     else if(human.gameboard.allShipsSunk()) {
         console.log("You Lose!");
-        
         computerSquares.forEach(square => {
             square.removeEventListener("click", clickHandler);
         })
@@ -129,7 +36,7 @@ function checkForWin() {
     
 }
 
-function clickHandler(e) {
+export function clickHandler(e) {
     let clicked = e.target.id;
     let x = clicked[0];
     let y = clicked[1];
