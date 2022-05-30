@@ -19,7 +19,7 @@ body {
 .content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 5fr 1fr;
+    grid-template-rows: 1fr 1fr 5fr 50px;
 }
 
 .grids {
@@ -29,6 +29,7 @@ body {
     gap: 150px;
     grid-row: 3/3;
     grid-column: 1/3;
+    padding-bottom: 50px;
 }
 
 .winner-text {
@@ -48,6 +49,14 @@ body {
     justify-self: start;
     align-self: center;
     padding-left: 220px;
+}
+
+.new-round {
+    display: none;
+    grid-column: 1/3;
+    justify-self: center;
+    width: 200px;
+    font-size: 25px;
 }
 
 .human-grid, .computer-grid {
