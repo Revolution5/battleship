@@ -1,17 +1,10 @@
-import { Gameboard } from "./gameboard";
+import { Player } from "./player";
 
-export class Player {
-    constructor() {
-        this.gameboard = new Gameboard;
-    }
-
+export class AI extends Player {
+    
     generateCoord() {
         //random number between 0 and 9
         return Math.floor(Math.random() * 10);
-    }
-
-    takeTurn(enemyGameboard, xPos, yPos) {
-        enemyGameboard.receiveAttack(xPos, yPos); 
     }
 
     takeTurnAI(enemyGameboard) {
