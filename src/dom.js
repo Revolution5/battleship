@@ -97,3 +97,20 @@ newRound.addEventListener("click", function(e) {
     newRound.style.display = "none";
     startGame();
 })
+
+export function placePlayerShip(shipName, length) {
+    populatePlayerBoard();
+    let humanSquares = document.querySelectorAll(".human-grid > .square");
+    winnerText.textContent = "Place your " + shipName + "!";
+
+    humanSquares.forEach(square => {
+        square.addEventListener("click", function(e) {
+            let clicked = e.target.id;
+            let x = Number(clicked[0]);
+            let y = Number(clicked[1]);
+            if(human.gameboard.placeShip(x, y, length, false)) {
+               populatePlayerBoard();     
+            }       
+        })
+    })
+}

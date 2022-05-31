@@ -50,7 +50,7 @@ export class Gameboard {
             this.ships.push(newShip);
             for(let i = yPos; i < yPos + length; i++) {
                 //we know the spots have been checked, so we can put the ship in those spots
-                this.board[xPos][i].ship = newShip;
+                this.board[xPos][i].ship = newShip; 
             }
             return true;
         }
