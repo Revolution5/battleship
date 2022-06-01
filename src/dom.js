@@ -58,7 +58,7 @@ export function populateEnemyBoard() {
             //computer ship must be invisible to the human player before being hit
             else if(computer.gameboard.board[i][j].ship != null && computer.gameboard.board[i][j].isHit == false) {
                 let square = document.createElement("div");
-                square.classList.add("square");
+                square.classList.add("square-ship");
                 square.setAttribute("id", i.toString() + j.toString());
                 computerGrid.appendChild(square); 
             }
@@ -93,13 +93,16 @@ function clearBoard(board) {
 }
 
 newRound.addEventListener("click", function(e) {
+    human.gameboard.resetBoard();
+    computer.gameboard.resetBoard();
     winnerText.textContent = "";
     newRound.style.display = "none";
-    startGame();
+    placePlayerShip("Carrier", 5);
 })
 
 export function placePlayerShip(shipName, length) {
     populatePlayerBoard();
+    clearBoard(computerGrid);
     let humanSquares = document.querySelectorAll(".human-grid > .square");
     winnerText.textContent = "Place your " + shipName + "!";
 
@@ -109,8 +112,9 @@ export function placePlayerShip(shipName, length) {
             let x = Number(clicked[0]);
             let y = Number(clicked[1]);
             if(human.gameboard.placeShip(x, y, length, false)) {
-               populatePlayerBoard();     
+               populatePlayerBoard();
+               startGame(); 
             }       
         })
-    })
+    })    
 }

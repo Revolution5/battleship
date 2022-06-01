@@ -1,10 +1,11 @@
 import { Player } from "./player";
 import { AI } from "./ai";
-import { populateEnemyBoard, populatePlayerBoard } from "./dom";
+import { populateEnemyBoard, populatePlayerBoard, placePlayerShip } from "./dom";
 
 export let human = new Player();
 export let computer = new AI();
 let newRound = document.querySelector(".new-round");
+
 
 export function clickHandler(e) {
     let clicked = e.target.id;
@@ -42,9 +43,9 @@ function checkForWin() {
 export function startGame() {
     document.querySelector(".human-label").textContent = "YOU";
     document.querySelector(".computer-label").textContent = "YOUR ENEMY";
-    human.gameboard.resetBoard();
-    computer.gameboard.resetBoard();
+    document.querySelector(".winner-text > h1").textContent = "";
 
+    
     // human.gameboard.placeShip(2,3,5,false);
     // human.gameboard.placeShip(0,1,5,false);
     // human.gameboard.placeShip(4,4,3,false);
@@ -57,6 +58,6 @@ export function startGame() {
     computer.placeRandomShip(3);
     computer.placeRandomShip(2);
     
-    populatePlayerBoard();
+    // populatePlayerBoard();
     populateEnemyBoard();
 }
