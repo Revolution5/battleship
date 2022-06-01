@@ -1,11 +1,11 @@
 @font-face {
     font-family: battleship;
-    src:url(./fonts/MachineStd-Bold.otf)
+    src:url(/fonts/MachineStd-Bold.otf)
 }
 
 @font-face {
     font-family: subtitle;
-    src: url(./fonts/ITCKabelStdBold.TTF);
+    src: url(/fonts/ITCKabelStdBold.TTF);
 }
 
 body {
