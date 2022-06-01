@@ -5,6 +5,18 @@ let computerGrid = document.querySelector(".computer-grid");
 let newRound = document.querySelector(".new-round");
 let winnerText = document.querySelector(".winner-text > h1");
 
+let isVertical = false;
+
+let switchButton = document.querySelector(".switch");
+switchButton.addEventListener("click", function(e) {
+    if(isVertical == false) {
+        isVertical = true;
+    }
+    else if(isVertical == true) {
+        isVertical = false;
+    }
+})
+
 export function populatePlayerBoard() {
     clearBoard(humanGrid);
 
@@ -51,31 +63,31 @@ export function populatePlayerBoard() {
             let x = Number(clicked[0]);
             let y = Number(clicked[1]);
             if(human.gameboard.ships.length == 0) {
-                if(human.gameboard.placeShip(x, y, 5, false)) {
+                if(human.gameboard.placeShip(x, y, 5, isVertical)) {
                     populatePlayerBoard();
                     winnerText.textContent = "Place your Battleship!";
                 }  
             }
             else if(human.gameboard.ships.length == 1) {
-                if(human.gameboard.placeShip(x, y, 4, false)) {
+                if(human.gameboard.placeShip(x, y, 4, isVertical)) {
                     populatePlayerBoard();
                     winnerText.textContent = "Place your Cruiser!";
                 }
             }
             else if(human.gameboard.ships.length == 2) {
-                if(human.gameboard.placeShip(x, y, 3, false)) {
+                if(human.gameboard.placeShip(x, y, 3, isVertical)) {
                     populatePlayerBoard();
                     winnerText.textContent = "Place your Submarine!";
                 }
             }
             else if(human.gameboard.ships.length == 3) {
-                if(human.gameboard.placeShip(x, y, 3, false)) {
+                if(human.gameboard.placeShip(x, y, 3, isVertical)) {
                     populatePlayerBoard();
                     winnerText.textContent = "Place your Destroyer!";
                 }
             }
             else if(human.gameboard.ships.length == 4) {
-                if(human.gameboard.placeShip(x, y, 2, false)) {
+                if(human.gameboard.placeShip(x, y, 2, isVertical)) {
                     populatePlayerBoard();
                     startGame();
                 }
@@ -100,7 +112,7 @@ export function populateEnemyBoard() {
             //computer ship must be invisible to the human player before being hit
             else if(computer.gameboard.board[i][j].ship != null && computer.gameboard.board[i][j].isHit == false) {
                 let square = document.createElement("div");
-                square.classList.add("square-ship");
+                square.classList.add("square");
                 square.setAttribute("id", i.toString() + j.toString());
                 computerGrid.appendChild(square); 
             }
@@ -142,5 +154,6 @@ newRound.addEventListener("click", function(e) {
     newRound.style.display = "none";
     document.querySelector(".human-label").textContent = "";
     document.querySelector(".computer-label").textContent = "";
+    document.querySelector(".switch").style.display = "block";
     populatePlayerBoard();
 })

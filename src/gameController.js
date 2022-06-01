@@ -44,6 +44,7 @@ export function startGame() {
     document.querySelector(".human-label").textContent = "YOU";
     document.querySelector(".computer-label").textContent = "YOUR ENEMY";
     document.querySelector(".winner-text > h1").textContent = "";
+    document.querySelector(".switch").style.display = "none";
 
     computer.placeRandomShip(5);
     computer.placeRandomShip(4);

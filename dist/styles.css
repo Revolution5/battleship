@@ -103,3 +103,10 @@ body {
 .square-ship-hit {
     background-color: #f87171;
 }
+
+.switch {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 30px;
+}
