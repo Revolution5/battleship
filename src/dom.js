@@ -40,6 +40,48 @@ export function populatePlayerBoard() {
             }
         }
     }
+    //click handler for placing ships before the game starts
+    let humanSquares = document.querySelectorAll(".human-grid > .square");
+    if(human.gameboard.ships.length == 0) {
+        winnerText.textContent = "Place your Carrier!"; 
+    }
+    humanSquares.forEach(square => {
+        square.addEventListener("click", function(e) {
+            let clicked = e.target.id;
+            let x = Number(clicked[0]);
+            let y = Number(clicked[1]);
+            if(human.gameboard.ships.length == 0) {
+                if(human.gameboard.placeShip(x, y, 5, false)) {
+                    populatePlayerBoard();
+                    winnerText.textContent = "Place your Battleship!";
+                }  
+            }
+            else if(human.gameboard.ships.length == 1) {
+                if(human.gameboard.placeShip(x, y, 4, false)) {
+                    populatePlayerBoard();
+                    winnerText.textContent = "Place your Cruiser!";
+                }
+            }
+            else if(human.gameboard.ships.length == 2) {
+                if(human.gameboard.placeShip(x, y, 3, false)) {
+                    populatePlayerBoard();
+                    winnerText.textContent = "Place your Submarine!";
+                }
+            }
+            else if(human.gameboard.ships.length == 3) {
+                if(human.gameboard.placeShip(x, y, 3, false)) {
+                    populatePlayerBoard();
+                    winnerText.textContent = "Place your Destroyer!";
+                }
+            }
+            else if(human.gameboard.ships.length == 4) {
+                if(human.gameboard.placeShip(x, y, 2, false)) {
+                    populatePlayerBoard();
+                    startGame();
+                }
+            }
+        })
+    })
 }
 
 export function populateEnemyBoard() {
@@ -95,26 +137,10 @@ function clearBoard(board) {
 newRound.addEventListener("click", function(e) {
     human.gameboard.resetBoard();
     computer.gameboard.resetBoard();
+    clearBoard(computerGrid);
     winnerText.textContent = "";
     newRound.style.display = "none";
-    placePlayerShip("Carrier", 5);
-})
-
-export function placePlayerShip(shipName, length) {
+    document.querySelector(".human-label").textContent = "";
+    document.querySelector(".computer-label").textContent = "";
     populatePlayerBoard();
-    clearBoard(computerGrid);
-    let humanSquares = document.querySelectorAll(".human-grid > .square");
-    winnerText.textContent = "Place your " + shipName + "!";
-
-    humanSquares.forEach(square => {
-        square.addEventListener("click", function(e) {
-            let clicked = e.target.id;
-            let x = Number(clicked[0]);
-            let y = Number(clicked[1]);
-            if(human.gameboard.placeShip(x, y, length, false)) {
-               populatePlayerBoard();
-               startGame(); 
-            }       
-        })
-    })    
-}
+})

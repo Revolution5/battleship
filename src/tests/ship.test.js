@@ -24,6 +24,5 @@ test("sinking a ship", () => {
     testShip.hit();
     testShip.hit();
     testShip.hit();
-    
     expect(testShip.sunk).toBe(true);
 })

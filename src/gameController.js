@@ -1,6 +1,6 @@
 import { Player } from "./player";
 import { AI } from "./ai";
-import { populateEnemyBoard, populatePlayerBoard, placePlayerShip } from "./dom";
+import { populateEnemyBoard, populatePlayerBoard } from "./dom";
 
 export let human = new Player();
 export let computer = new AI();
@@ -45,19 +45,11 @@ export function startGame() {
     document.querySelector(".computer-label").textContent = "YOUR ENEMY";
     document.querySelector(".winner-text > h1").textContent = "";
 
-    
-    // human.gameboard.placeShip(2,3,5,false);
-    // human.gameboard.placeShip(0,1,5,false);
-    // human.gameboard.placeShip(4,4,3,false);
-    // human.gameboard.placeShip(6,7,3,false);
-    // human.gameboard.placeShip(8,1,2,false);
-
     computer.placeRandomShip(5);
     computer.placeRandomShip(4);
     computer.placeRandomShip(3);
     computer.placeRandomShip(3);
     computer.placeRandomShip(2);
     
-    // populatePlayerBoard();
     populateEnemyBoard();
 }
