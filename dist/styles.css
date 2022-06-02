@@ -110,3 +110,7 @@ body {
     left: 50%;
     font-size: 30px;
 }
+
+.hover:hover {
+    background-color: #d1d5db;
+}

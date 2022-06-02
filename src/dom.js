@@ -11,9 +11,11 @@ let switchButton = document.querySelector(".switch");
 switchButton.addEventListener("click", function(e) {
     if(isVertical == false) {
         isVertical = true;
+        switchButton.textContent = "Rotate Horizontally"
     }
     else if(isVertical == true) {
         isVertical = false;
+        switchButton.textContent = "Rotate Vertically"
     }
 })
 
@@ -52,12 +54,20 @@ export function populatePlayerBoard() {
             }
         }
     }
+
+    gameSetup();
+}
+
+function gameSetup() {
     //click handler for placing ships before the game starts
     let humanSquares = document.querySelectorAll(".human-grid > .square");
     if(human.gameboard.ships.length == 0) {
         winnerText.textContent = "Place your Carrier!"; 
     }
     humanSquares.forEach(square => {
+            if(human.gameboard.ships.length < 5) {
+                square.classList.add("hover");
+            }
         square.addEventListener("click", function(e) {
             let clicked = e.target.id;
             let x = Number(clicked[0]);
